@@ -1,4 +1,4 @@
-# TF_CollaborativeNet
+# TF_CollaborativeNet (Previous called TF-Cluster
 This package is capable of generating TF collaborative subnetworks, each control a trait or a biological process
 
 
