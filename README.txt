@@ -22,11 +22,22 @@ If it does not work, cd to individual module directories and follow the directio
 
 ############ how to run ########
 
-1. make a copy of SCCM_pipe.cfg, you could copy it to the directory where your two input files are and modify it. Usually you only need to change the number of CPUs and the two input files names.
+1. make a copy of SCCM_pipe.cfg, you could copy it to the current directory where your two input files are and modify it. Usually you only need to change the number of CPUs and the two input files names.
 
-2. type:
+2. You then copy the SCCM_pipe.pl from ./scripts to the current directory. Then run this command to build the collaborative network of all TFs, and then decompose it into many subntworks, each subnetwork controls a biological process or a complex trait  
 
 nohup perl SCCM_pipe.pl SCCM_pipe.cfg & 
+
+
+Note that:
+
+a. SCCM_pipe.pl calls  first calls  ./scripts/SCCM_builder.pl to build the collaborative network, 
+
+b. After that, SCCM_pipe.pl calls /scripts/SCCM_decomposition.pl to decompose the collabroative network. 
+
+c. you can manually run SCCM_builder.pl and SCCM_decomposition.pl separately without using SCCM_pipe.cfg.  However, you need to figure out the input file and command line.
+
+
 
 ########### about config file ##############
 
@@ -68,10 +79,29 @@ AAM    2.98     3.45   5.33   3.22
 
 2.3 The detailed TFgenes connectivity in each cluster is included in the cluster_within_connectivity directory. The format is TFgene1   TFgene2  connectivity(number of top 100 gene shared). This file can be used as input to Cytoscape or other tools to generate the connectivity graph.
 
+
+########### important information #############
+
+1. Your input data must from the same tissues, can be pooled data from different resources
+
+2. The top 10 clusters usually contains TFs that have tighter collaboration;
+
+3. Usually the top 30 clusters contains biological meaningful or important TFs with collaborative.  
+
+
 ######### help info #############
 
-For help contact Jeff Nie at jnie@morgridgeinstitute.org or 
+For help contact Hairong Wei at hairong@mtu.edu
 
-                 Hairong Wei at hairong@mtu.edu
+################ How to cite? ################
+
+Citation:
+
+1)	Nie, J., R. Stewart, F. Ruan, J. Thomson, H. Zhang, X. Cui and H. Wei*. 2011. TF-Cluster: a pipeline for identifying functionally coordinated transcription factors via network decomposition of the shared coexpression connectivity matrix (SCCM). BMC Systems Biology, 5:53. https://doi.org/10.1186/1752-0509-5-53.
+
+2)	Ji, X. S. Chen, J. Li, W. Deng, Z. Wei and H. Wei*.  2017.  SSGA and MSGA: two seed-growing algorithms for constructing collaborative subnetworks. Scientific Reports. 7:1446, DOI:10.1038/s41598-017-01556-z
+
+
+
 
 
